@@ -1,0 +1,22 @@
+{
+    "tasks": [
+        {
+            "task_id": 1,
+            "project_name": "Проект X",
+            "description": "Разработка интерфейса",
+            "status": "pending"
+        },
+        {
+            "task_id": 2,
+            "project_name": "Проект Y",
+            "description": "Тестирование модуля",
+            "status": "in progress"
+        },
+        {
+            "task_id": 3,
+            "project_name": "Проект Y",
+            "description": "Документация",
+            "status": "completed"
+        }
+    ]
+}
