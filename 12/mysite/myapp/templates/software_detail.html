@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ software.name }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .software-detail {
+            margin: 20px;
+        }
+        .software-detail h1 {
+            font-size: 30px;
+        }
+        .software-detail p {
+            font-size: 18px;
+            color: #555;
+        }
+        .software-detail .release-date {
+            font-size: 16px;
+            color: #888;
+        }
+        .edit-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+        }
+        .edit-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="software-detail">
+        <h1>{{ software.name }}</h1>
+        <p>{{ software.description }}</p>
+        <p class="release-date">Released on: {{ software.release_date }}</p>
+        <p><strong>Category:</strong> {{ software.category.name }}</p>
+        {% if software.user %}
+            <p><strong>User:</strong> {{ software.user.username }}</p>
+        {% else %}
+            <p><strong>User:</strong> Not Assigned</p>
+        {% endif %}
+        <br>
+        <a href="{% url 'software_edit' software.id %}" class="edit-button">Edit Software</a>
+    </div>
+    <a href="/">Back to Software List</a>
+</body>
+</html>

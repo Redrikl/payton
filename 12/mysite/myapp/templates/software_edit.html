@@ -3,34 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Software List</title>
+    <title>Edit Software - {{ software.name }}</title>
     <style>
         body {
             font-family: Arial, sans-serif;
         }
-        .software-item {
-            border: 1px solid #ddd;
-            padding: 10px;
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 8px;
             margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
         }
-        .software-item h2 {
-            margin: 0;
-            font-size: 24px;
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
         }
-        .software-item p {
-            font-size: 16px;
-            color: #555;
-        }
-        .software-item .release-date {
-            font-size: 14px;
-            color: #888;
+        button:hover {
+            background-color: #45a049;
         }
     </style>
 </head>
 <body>
-    <h1>Software List</h1>
+    <h1>Edit Software - {{ software.name }}</h1>
 
-    <h2>Add New Software</h2>
     <form method="POST">
         {% csrf_token %}
         <div class="form-group">
@@ -53,20 +59,10 @@
             <label for="id_user">User</label>
             {{ form.user }}
         </div>
-        <button type="submit">Add Software</button>
+        <button type="submit">Save Changes</button>
     </form>
 
-    <h2>Existing Software</h2>
-    <div>
-        {% for software in softwares %}
-            <div class="software-item">
-                <h2><a href="{% url 'software_detail' software.id %}">{{ software.name }}</a></h2>
-                <p>{{ software.description|truncatewords:20 }}</p>
-                <p class="release-date">Released on: {{ software.release_date }}</p>
-            </div>
-        {% empty %}
-            <p>No software available.</p>
-        {% endfor %}
-    </div>
+    <br>
+    <a href="{% url 'software_detail' software.id %}">Cancel</a>
 </body>
 </html>
