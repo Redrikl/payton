@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software List</title>
+</head>
+<body>
+    <h1>Software List</h1>
+    <ul>
+        {% for software in softwares %}
+            <li>
+                <strong>{{ software.name }}</strong><br>
+                {{ software.description }}<br>
+                Released on: {{ software.release_date }}<br>
+                Category: {{ software.category.name }}<br>
+                {% if software.user %}
+                    User: {{ software.user.username }}<br>
+                {% else %}
+                    User: Not Assigned<br>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

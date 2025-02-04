@@ -7,7 +7,6 @@ import sqlite3
 
 cgitb.enable()  # Показывать трассировку ошибок в браузере
 
-# ВАЖНО: указываем корректный заголовок с UTF-8
 print("Content-Type: text/html; charset=windows-1251\n")
 
 # Считываем данные из формы
@@ -16,14 +15,13 @@ project_id = form.getfirst("project_id", "")  # какой проект
 description = form.getfirst("description", "") # описание задачи
 status = form.getfirst("status", "")           # статус ('pending', 'completed', etc.)
 
-# Подключаемся к базе (возможно, нужно скорректировать путь):
-# Если software.db лежит на уровень выше папки cgi-bin:
+
 conn = sqlite3.connect("software.db")
 cursor = conn.cursor()
 
 msg = ""
 
-# Если все поля заполнены, добавляем запись в таблицу tasks
+
 if project_id and description and status:
     try:
         cursor.execute("""

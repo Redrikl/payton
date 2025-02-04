@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .software-item {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .software-item h2 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .software-item p {
+            font-size: 16px;
+            color: #555;
+        }
+        .software-item .release-date {
+            font-size: 14px;
+            color: #888;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Software List</h1>
+
+    <h2>Add New Software</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="id_name">Name</label>
+            {{ form.name }}
+        </div>
+        <div class="form-group">
+            <label for="id_description">Description</label>
+            {{ form.description }}
+        </div>
+        <div class="form-group">
+            <label for="id_release_date">Release Date</label>
+            {{ form.release_date }}
+        </div>
+        <div class="form-group">
+            <label for="id_category">Category</label>
+            {{ form.category }}
+        </div>
+        <div class="form-group">
+            <label for="id_user">User</label>
+            {{ form.user }}
+        </div>
+        <button type="submit">Add Software</button>
+    </form>
+
+    <h2>Existing Software</h2>
+    <div>
+        {% for software in softwares %}
+            <div class="software-item">
+                <h2>{{ software.name }}</h2>
+                <p>{{ software.description|truncatewords:20 }}</p>
+                <p class="release-date">Released on: {{ software.release_date }}</p>
+            </div>
+        {% empty %}
+            <p>No software available.</p>
+        {% endfor %}
+    </div>
+</body>
+</html>
